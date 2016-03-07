@@ -46,7 +46,7 @@ The majority of time was taken to figure out how to add/load images + change/sav
 
 Bugs to fix (or features to add): Relating images to different users, changing the edit button to a "save" button after caption field is populated instead of having the user save by pressing onto the cell, don't allow user to change the description if the "edit" button wasn't clicked, change edit and save buttons to have icon backgrounds 
 
-The code for this assignment is incredibly hacky.
+The code for this assignment is ***incredibly hacky**.
 
 ## License
 
