@@ -14,7 +14,6 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var tableView: UITableView!
     
     var images : [PFObject]?
-    var mainImages : [UIImage] = []
     var imagesObjects : [PFObject] = []
     
     override func viewDidLoad() {
@@ -26,6 +25,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         // Retrieve data from parse.com
         let query = PFQuery(className:"Images")
+        query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             
@@ -47,29 +47,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             }
         }
     }
-    
-//    func populateImages(object) {
-//        let query = PFQuery(className:"Item")
-//        query.getObjectInBackgroundWithId(object.objectId!) {
-//            (photo: PFObject?, error: NSError?) -> Void in
-//            if error == nil && photo != nil {
-//                let pfFile = photo!["image"] as! PFFile
-//                print("pffile: \(pfFile)")
-//                pfFile.getDataInBackgroundWithBlock({ ( imageData: NSData?, error: NSError?) -> Void in
-//                    if error == nil{
-//                        self.mainImages.append(UIImage(data: imageData!)!)
-//                        self.tableView.reloadData()
-//                        //cell.imageView!.image = UIImage(data: imageData!)
-//                    } else {
-//                        print("No image found")
-//                    }
-//                })
-//                
-//            } else {
-//                print(error)
-//            }
-//        }
-//    }
+
     
     @IBAction func onPickPhoto(sender: AnyObject) {
         let imagePicker = UIImagePickerController()
@@ -111,56 +89,14 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             dismissViewControllerAnimated(true, completion: nil)
     }
     
-//    func getImage() {
-//        let query = PFQuery(className:"Item")
-//        query.findObjectsInBackgroundWithBlock {
-//            (objects: [PFObject]?, error: NSError?) -> Void in
-//            
-//            if error == nil {
-//                // The find succeeded.
-//                print("Successfully retrieved \(objects!.count) scores.")
-//                // Do something with the found objects
-//                if let objects = objects {
-//                    for object in objects {
-//                        //cell.imageView.image = object[]
-//                        print(object.objectId)
-//                        query.getObjectInBackgroundWithId(object.objectId!) {
-//                            (photo: PFObject?, error: NSError?) -> Void in
-//                            if error == nil && photo != nil {
-//                                let pfFile = photo!["image"] as! PFFile
-//                                print(pfFile)
-//                                pfFile.getDataInBackgroundWithBlock({ ( imageData: NSData?, error: NSError?) -> Void in
-//                                    if error == nil{
-//                                        cell.imageView!.image = UIImage(data: imageData!)
-//                                    } else {
-//                                        print("No image found")
-//                                    }
-//                                })
-//                                
-//                            } else {
-//                                print(error)
-//                            }
-//                        }
-//                    }
-//                }
-//            } else {
-//                // Log details of the failure
-//                print("Error: \(error!) \(error!.userInfo)")
-//            }
-//        }
-//    }
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-//        let cell:PhotoTableViewCell = tableView.dequeueReusableCellWithIdentifier("PhotoTableViewCell", forIndexPath: indexPath) as! PhotoTableViewCell
-        
+
         let cell = tableView.dequeueReusableCellWithIdentifier("PhotoTableViewCell", forIndexPath: indexPath) as! PhotoTableViewCell
         
         let query = imagesObjects[indexPath.row]
-        
         let pfFile = query["image"] as! PFFile
         
-        
+        // Set image
         pfFile.getDataInBackgroundWithBlock({ ( imageData: NSData?, error: NSError?) -> Void in
             if error == nil{
                 cell.photoImageView.image = UIImage(data: imageData!)
@@ -169,64 +105,68 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             }
         })
         
+        // Set caption
+        if let caption = query["caption"] {
+            cell.photoCaptionLabel.text = caption as? String
+        } else {
+            let tempDescription = "Image \(indexPath.row + 1)"
+            cell.photoCaptionLabel.text = tempDescription
+        }
         
-        cell.photoCaptionLabel.text = ("Image \(indexPath.row)")
-        
-        
-        //cell.photoCaptionLabel!.text = query.objectForKey("Images") as? String
-        
-//        return cell
-        
-        
-//
-//        if mainImages.count > 0 {
-//            print("there are \(mainImages.count) images")
-//            print(mainImages)
-//            cell.imageView!.image = mainImages[indexPath.row]
-//        }
-//        
-
         return cell
+    }
+    
+
+    
+    // On table cell select
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-//        let row = indexPath.row
-//        var individualUser = userArray[row] as! PFUser
-//        var username = individualUser.username as String
-//        
-//        var pfimage = individualUser["image"] as! PFFile
-//        
-//        pfimage.getDataInBackgroundWithBlock({
-//            (result, error) in
-//            cell.userImage.image = UIImage(data: result)
-//        })
-//        cell.usernameLabel.text = username
+        let indexPath = tableView.indexPathForSelectedRow
+        
+        let currentCell = tableView.cellForRowAtIndexPath(indexPath!)! as! PhotoTableViewCell
+        
+        let imageObject = imagesObjects[indexPath!.row]
+        let query = PFQuery(className:"Images")
+        
+        print(currentCell.photoCaptionField.text!)
+        
+        query.getObjectInBackgroundWithId(imageObject.objectId!) {
+            (object: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if let object = object {
+                object["caption"] = currentCell.photoCaptionField.text!
+                object.saveInBackground()
+                currentCell.photoCaptionField.hidden = true
+                currentCell.photoCaptionLabel.hidden = false
+                currentCell.editButton.hidden = false
+                currentCell.saveButton.hidden = true
+                self.tableView.reloadData()
+            }
+        }
         
         
+        tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow!, animated: true)
+    }
+    
+    // Detect when save button is pressed
+    func buttonClicked(sender:UIButton) {
+        let buttonRow = sender.tag
+        let imageObject = imagesObjects[buttonRow]
+        print(buttonRow)
+        print(imageObject.objectId)
         
-        
-//        var cell = tableView.dequeueReusableCellWithIdentifier("PhotoTableViewCell")
-//        if cell != nil {
-            //cell = Customcells(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
-//        }
-        
-//        let cell = UITableViewCell(style: .Default, reuseIdentifier: "PhotoTableViewCell")
-        
-        // Extract values from the PFObject to display in the table cell
-//        if let nameEnglish = object?["nameEnglish"] as? String {
-//            cell.customNameEnglish.text = nameEnglish
-//        }
-//        if let capital = object?["capital"] as? String {
-//            cell.customCapital.text = capital
-//        }
-        
-        // Display flag image
-//        let photo = UIImage(named: "Item")
-//        cell.imageView!.image = photo
-//        if let image = object?["image"] as? PFFile {
-//            cell.imageView.image = photo
-//            cell.customFlag.loadInBackground()
-//        }
-        
-//        return cell
+        let query = PFQuery(className:"Images")
+        query.getObjectInBackgroundWithId(imageObject.objectId!) {
+            (object: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if let object = object {
+                object["caption"] = "testing"
+                object.saveInBackground()
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
