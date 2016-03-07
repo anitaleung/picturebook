@@ -13,7 +13,6 @@
 		08D6A39C1C8BA92700FF6560 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08D6A39A1C8BA92700FF6560 /* LaunchScreen.storyboard */; };
 		08D6A3A41C8BAFC700FF6560 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D6A3A31C8BAFC700FF6560 /* LoginViewController.swift */; };
 		08D6A3A61C8BBA8600FF6560 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D6A3A51C8BBA8600FF6560 /* HomeViewController.swift */; };
-		08D6A3A91C8BBC9000FF6560 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D6A3A81C8BBC9000FF6560 /* ImagePickerViewController.swift */; };
 		08D6A3AB1C8BDA4200FF6560 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D6A3AA1C8BDA4200FF6560 /* PhotoTableViewCell.swift */; };
 		EDCEC63C14C968EB2E5DB2B8 /* Pods_picturebook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84071867938468CF24FCD99A /* Pods_picturebook.framework */; };
 /* End PBXBuildFile section */
@@ -27,7 +26,6 @@
 		08D6A39D1C8BA92700FF6560 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08D6A3A31C8BAFC700FF6560 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		08D6A3A51C8BBA8600FF6560 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		08D6A3A81C8BBC9000FF6560 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		08D6A3AA1C8BDA4200FF6560 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoTableViewCell.swift; path = ../PhotoTableViewCell.swift; sourceTree = "<group>"; };
 		553E92394525A1E12BA25ABC /* Pods-picturebook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-picturebook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-picturebook/Pods-picturebook.debug.xcconfig"; sourceTree = "<group>"; };
 		84071867938468CF24FCD99A /* Pods_picturebook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_picturebook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,7 +80,6 @@
 			children = (
 				08D6A3AA1C8BDA4200FF6560 /* PhotoTableViewCell.swift */,
 				08D6A3A51C8BBA8600FF6560 /* HomeViewController.swift */,
-				08D6A3A81C8BBC9000FF6560 /* ImagePickerViewController.swift */,
 				08D6A3A31C8BAFC700FF6560 /* LoginViewController.swift */,
 			);
 			name = "View Controllers";
@@ -231,7 +228,6 @@
 				08D6A3AB1C8BDA4200FF6560 /* PhotoTableViewCell.swift in Sources */,
 				08D6A3A41C8BAFC700FF6560 /* LoginViewController.swift in Sources */,
 				08D6A3921C8BA92700FF6560 /* AppDelegate.swift in Sources */,
-				08D6A3A91C8BBC9000FF6560 /* ImagePickerViewController.swift in Sources */,
 				08D6A3A61C8BBA8600FF6560 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

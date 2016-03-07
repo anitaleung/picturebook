@@ -158,24 +158,5 @@
             </objects>
             <point key="canvasLocation" x="760" y="389"/>
         </scene>
-        <!--Image Picker View Controller-->
-        <scene sceneID="Af4-WZ-aqm">
-            <objects>
-                <viewController storyboardIdentifier="ImagePickerViewController" id="pbc-gm-kNt" customClass="ImagePickerViewController" customModule="picturebook" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="BPJ-HI-WLe"/>
-                        <viewControllerLayoutGuide type="bottom" id="jNU-a2-Qgr"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ejE-MT-kZO">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0Wa-NH-lSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1193" y="389"/>
-        </scene>
     </scenes>
 </document>
