@@ -173,6 +173,15 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         return imagesObjects.count
     }
 
+    @IBAction func onExit(sender: AnyObject) {
+        PFUser.logOut()
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+        self.presentViewController(nextViewController, animated:true, completion:nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
