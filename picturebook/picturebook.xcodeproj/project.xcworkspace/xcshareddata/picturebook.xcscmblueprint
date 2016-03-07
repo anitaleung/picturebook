@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "FCF5E2CEA6963C1A4316D341EB75F2E6085CB410",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "FCF5E2CEA6963C1A4316D341EB75F2E6085CB410" : 0,
+    "00823661FF60EBC9EEA9988A82FA42EC80285FA0" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "91081BA9-9253-4C50-9259-F7BDDD37F67B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "FCF5E2CEA6963C1A4316D341EB75F2E6085CB410" : "picturebook\/",
+    "00823661FF60EBC9EEA9988A82FA42EC80285FA0" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "picturebook",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "picturebook\/picturebook.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/anitaleung\/fun-facts.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "00823661FF60EBC9EEA9988A82FA42EC80285FA0"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/anitaleung\/picturebook.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FCF5E2CEA6963C1A4316D341EB75F2E6085CB410"
+    }
+  ]
+}
